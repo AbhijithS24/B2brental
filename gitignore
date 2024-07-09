@@ -1,0 +1,32 @@
+build.xml
+extensioninfo.xsd
+beans.xsd
+items.xsd
+platformhome.properties
+wro_addons.xml
+
+*_bof.jar
+*-testclasses.xml
+*-webtestclasses.xml
+
+classes/
+testclasses/
+gensrc/
+
+eclipsebin/
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+.classpath
+
+**/*smartedit/web/webroot/valtechsmartedit/js
+**/*smartedit/smartedit-custom-build/generated
+**/*smartedit/smartedit-build
+**/*smartedit/package.json
+
+
+**/solr/instances/default/configsets/default/conf/schema.xml
+**/solr/instances/default/configsets/default/conf/solrconfig.xml
