@@ -25,7 +25,36 @@
             <value code="WHITE"/>
             <value code="YELLOW"/>
         </enumtype>
+        <enumtype code="RentalDeviceStatus" generate="true" autocreate="true" dynamic="true">
+            <value code="AVAILABLE"></value>
+            <value code="PROCESSING"></value>
+            <value code="FAULTY"></value>
+            <value code="BLOCKED"></value>
+        </enumtype>
     </enumtypes>
+    <relations>
+        <relation code="Product2RentalDevice" generate="true" localized="false" autocreate="true">
+            <sourceElement qualifier="RentalProduct" type="RentalProduct" cardinality="one">
+                <description>Product</description>
+                <modifiers read="true" write="true"/>
+            </sourceElement>
+            <targetElement qualifier="RentalDevice" type="RentalDevice" cardinality="many" collectiontype="list">
+                <description>Rental Device</description>
+                <modifiers read="true" write="true"/>
+            </targetElement>
+        </relation>
+        <relation code="StockLevel2RentalDevice" generate="true" localized="false" autocreate="true">
+            <sourceElement qualifier="RentalDevice" type="RentalDevice" cardinality="many" collectiontype="list">
+                <description>Rental Device</description>
+                <modifiers read="true" write="true"/>
+            </sourceElement>
+            <targetElement qualifier="StockLevel" type="StockLevel" cardinality="one">
+                <description>StockLevel</description>
+                <modifiers read="true" write="true"/>
+            </targetElement>
+        </relation>
+    </relations>
+
 
     <itemtypes>
 
@@ -47,7 +76,6 @@
                     </attribute>
                 </attributes>
             </itemtype>
-
             <itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
                       autocreate="true" generate="true"
                       jaloclass="com.training.core.jalo.ApparelStyleVariantProduct">
@@ -82,6 +110,27 @@
                         <description>Size of the product.</description>
                         <modifiers/>
                         <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+        <typegroup name="Rental">
+            <itemtype code="RentalProduct" extends="Product"
+                      autocreate="true" generate="true">
+                <description>Rental Product</description>
+                <attributes>
+                </attributes>
+            </itemtype>
+            <itemtype code="RentalDevice" autocreate="true" generate="true">
+                <deployment table="RentalDevice" typecode="12123"/>
+                <attributes>
+                    <attribute qualifier="code" type="java.lang.String">
+                        <persistence type="property"/>
+                        <modifiers read="true" write="true" search="true" unique="true"/>
+                    </attribute>
+                    <attribute qualifier="status" type="RentalDeviceStatus">
+                        <persistence type="property"/>
+                        <modifiers read="true" write="true" search="true"/>
                     </attribute>
                 </attributes>
             </itemtype>
